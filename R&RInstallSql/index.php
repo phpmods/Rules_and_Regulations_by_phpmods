@@ -15,6 +15,7 @@ error_reporting(0);
 	$subject = 'Rules and Regulations v1 Installed';
 	$message = ''.SITE_NAME.' Installed Rules and Regulations v1 Module URL '.SITE_URL.'';
 	
+	Util::SendEmail($email, $subject, $message);
                     if(PilotGroups::group_has_perm(Auth::$usergroups, ACCESS_ADMIN))
                     {
                         echo '<h4>Rules and Regulations DataBase Installer for '.SITE_NAME.'</h4>';
@@ -33,7 +34,7 @@ error_reporting(0);
 	`" . TABLE_PREFIX . "rules_categories`";
 	DB::query($sqldrop);
 	
-  $sql = "CREATE TABLE `phpvms_fssrules` (
+  $sql = "CREATE TABLE `" . TABLE_PREFIX . "rules` (
   `id` int(11) NOT NULL auto_increment,
   `rule` varchar(800) NOT NULL,
   `category` int(10) NOT NULL,
@@ -43,7 +44,7 @@ error_reporting(0);
 ";
    DB::query($sql);
    
-  $sql8 = "CREATE TABLE `phpvms_fssrules_categories` (
+  $sql8 = "CREATE TABLE `" . TABLE_PREFIX . "rules_categories` (
   `id` int(11) NOT NULL auto_increment,
   `title` varchar(100) NOT NULL,
   `status` int(20) NOT NULL,
