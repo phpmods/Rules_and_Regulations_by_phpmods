@@ -1,6 +1,6 @@
 <?php
 ///////////////////////////////////////////////
-/// Rules and Regulations v1 by php-mods.eu ///
+///Rules and Regulations v1.1 by php-mods.eu///
 ///            Author php-mods.eu           ///
 ///           Packed at 30/08/2012          ///
 ///     Copyright (c) 2012, php-mods.eu     ///
@@ -31,6 +31,8 @@ class Ruleregs extends CodonModule {
 	  $this->set('message', 'Rule Deleted!');
 	  $this->render('core_success.tpl');
 	  LogData::addLog(Auth::$userinfo->pilotid, "Deleted a rule from the database.");
+	  $this->set('categories', RuleregsData::categories());
+	  $this->render('ruleregs/ruleregs_index.tpl');
 	}
 	public function rule_edit($id)
 	{
@@ -53,6 +55,8 @@ class Ruleregs extends CodonModule {
 		$this->set('message', 'Rule Updated!');
 		$this->render('core_success.tpl');
 		LogData::addLog(Auth::$userinfo->pilotid, "Updated a rule!");
+		$this->set('categories', RuleregsData::categories());
+		$this->render('ruleregs/ruleregs_index.tpl');
 	}
 	public function add_rule()
 	{
@@ -70,13 +74,17 @@ class Ruleregs extends CodonModule {
 		$this->set('message', 'New Rule Added Successfully');
 		$this->render('core_success.tpl');
 		LogData::addLog(Auth::$userinfo->pilotid, "Added a new rule!");
+		$this->set('categories', RuleregsData::categories());
+		$this->render('ruleregs/ruleregs_index.tpl');
 	}
 		public function delete_category($id)
 	{
 	  RuleregsData::delete_category($id);
-	  $this->set('message', 'Rule Category');
+	  $this->set('message', 'Rule Category Deleted');
 	  $this->render('core_success.tpl');
 	  LogData::addLog(Auth::$userinfo->pilotid, "Deleted a rule category from the database.");
+	  $this->set('categories', RuleregsData::categories());
+	  $this->render('ruleregs/ruleregs_index.tpl');
 	}
 	public function add_category()
 	{
@@ -93,6 +101,8 @@ class Ruleregs extends CodonModule {
 		$this->set('message', 'New Rule Category Added Successfully');
 		$this->render('core_success.tpl');
 		LogData::addLog(Auth::$userinfo->pilotid, "Added a new rule category!");
+		$this->set('categories', RuleregsData::categories());
+		$this->render('ruleregs/ruleregs_index.tpl');
 	}
 	public function category_edit($id)
 	{
@@ -113,5 +123,7 @@ class Ruleregs extends CodonModule {
 		$this->set('message', 'Rule Category Updated!');
 		$this->render('core_success.tpl');
 		LogData::addLog(Auth::$userinfo->pilotid, "Updated a rule category!");
+		$this->set('categories', RuleregsData::categories());
+		$this->render('ruleregs/ruleregs_index.tpl');
 	}
 }
