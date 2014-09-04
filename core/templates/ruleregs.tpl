@@ -65,4 +65,7 @@ if(Auth::LoggedIn())
        </div>
 </div>
 <p align="right">Copyright © 2014 - phpmods</p>
+<?php 
+//Please do not remove the copyright notice as it is part of the Creative Commons License which module is licensed under. Please consider buying me a coffee. FYI, coffee in Greece costs just 1€. My PayPal email address is geo.servetas@gmail.com. 
+?>
 </body>
