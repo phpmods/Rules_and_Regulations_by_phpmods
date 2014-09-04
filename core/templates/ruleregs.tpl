@@ -3,7 +3,7 @@
 ///Rules and Regulations v1.1 by php-mods.eu///
 ///            Author php-mods.eu           ///
 ///           Packed at 30/12/2012          ///
-///     Copyright (c) 2013, php-mods.eu     ///
+///     Copyright (c) 2014, php-mods.eu     ///
 ///////////////////////////////////////////////
 
 ?>
@@ -64,5 +64,5 @@ if(Auth::LoggedIn())
        <?php } ?>
        </div>
 </div>
-<p align="right">Copyright © 2012 - phpmods</p>
+<p align="right">Copyright © 2014 - phpmods</p>
 </body>
