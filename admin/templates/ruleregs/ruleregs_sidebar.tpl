@@ -1,9 +1,9 @@
 <?php
 ///////////////////////////////////////////////
-///Rules and Regulations v1.1 by php-mods.eu///
+///Rules and Regulations v1.2 by php-mods.eu///
 ///            Author php-mods.eu           ///
-///           Packed at 30/12/2012          ///
-///     Copyright (c) 2014, php-mods.eu     ///
+///            Packed at 11/2/2015          ///
+///     Copyright (c) 2015, php-mods.eu     ///
 ///////////////////////////////////////////////
 
 ?>
