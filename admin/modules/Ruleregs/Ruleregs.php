@@ -1,9 +1,9 @@
 <?php
 ///////////////////////////////////////////////
-///Rules and Regulations v1.1 by php-mods.eu///
+///Rules and Regulations v1.2 by php-mods.eu///
 ///            Author php-mods.eu           ///
-///           Packed at 30/12/2012          ///
-///     Copyright (c) 2014, php-mods.eu     ///
+///            Packed at 11/2/2015          ///
+///     Copyright (c) 2015, php-mods.eu     ///
 ///////////////////////////////////////////////
 
 class Ruleregs extends CodonModule {
@@ -25,14 +25,13 @@ class Ruleregs extends CodonModule {
 		$this->set('rule', RuleregsData::ruleinfo($id));
 		$this->render('ruleregs/ruleregs_admin.tpl');
 	}
-	public function rule_delete($id)
+	public function rule_delete($id, $cat)
 	{
 	  RuleregsData::delete_rule($id);
 	  $this->set('message', 'Rule Deleted!');
 	  $this->render('core_success.tpl');
 	  LogData::addLog(Auth::$userinfo->pilotid, "Deleted a rule from the database.");
-	  $this->set('categories', RuleregsData::categories());
-	  $this->render('ruleregs/ruleregs_index.tpl');
+	  self::catedit($cat);
 	}
 	public function rule_edit($id)
 	{
@@ -45,6 +44,7 @@ class Ruleregs extends CodonModule {
 		{
 			$this->set('message', 'Some fields are missing! Fill them all please.');
 			$this->render('core_error.tpl');
+			self::rule_edit($this->post->id);
 			return;
 		}
 		$rule = DB::escape($this->post->rule);
@@ -55,12 +55,12 @@ class Ruleregs extends CodonModule {
 		$this->set('message', 'Rule Updated!');
 		$this->render('core_success.tpl');
 		LogData::addLog(Auth::$userinfo->pilotid, "Updated a rule!");
-		$this->set('categories', RuleregsData::categories());
-		$this->render('ruleregs/ruleregs_index.tpl');
+		self::catedit($category);
 	}
-	public function add_rule()
+	public function add_rule($category)
 	{
 		$this->set('rulecat', RuleregsData::categories());
+		$this->set('category', $category);
 		$this->render('ruleregs/rule_add.tpl');
 	}
 	public function add_rule_db() {
@@ -68,23 +68,22 @@ class Ruleregs extends CodonModule {
 		{
 			$this->set('message', 'Some fields are missing! Fill them all please.');
 			$this->render('core_error.tpl');
+			self::add_rule();
 			return;
 		}	
 		$ret = RuleregsData::addrule($this->post->rule, $this->post->status, $this->post->category);
 		$this->set('message', 'New Rule Added Successfully');
 		$this->render('core_success.tpl');
 		LogData::addLog(Auth::$userinfo->pilotid, "Added a new rule!");
-		$this->set('categories', RuleregsData::categories());
-		$this->render('ruleregs/ruleregs_index.tpl');
+		self::catedit($this->post->category);
 	}
-		public function delete_category($id)
+	public function delete_category($id)
 	{
-	  RuleregsData::delete_category($id);
-	  $this->set('message', 'Rule Category Deleted');
-	  $this->render('core_success.tpl');
-	  LogData::addLog(Auth::$userinfo->pilotid, "Deleted a rule category from the database.");
-	  $this->set('categories', RuleregsData::categories());
-	  $this->render('ruleregs/ruleregs_index.tpl');
+		RuleregsData::delete_category($id);
+	  	$this->set('message', 'Rule Category Deleted');
+	  	$this->render('core_success.tpl');
+	  	LogData::addLog(Auth::$userinfo->pilotid, "Deleted a rule category from the database.");
+	  	self::index();
 	}
 	public function add_category()
 	{
@@ -95,14 +94,14 @@ class Ruleregs extends CodonModule {
 		{
 			$this->set('message', 'Some fields are missing! Fill them all please.');
 			$this->render('core_error.tpl');
+			self::add_category();
 			return;
 		}	
 		$ret = RuleregsData::addcategory($this->post->title, $this->post->status);
 		$this->set('message', 'New Rule Category Added Successfully');
 		$this->render('core_success.tpl');
 		LogData::addLog(Auth::$userinfo->pilotid, "Added a new rule category!");
-		$this->set('categories', RuleregsData::categories());
-		$this->render('ruleregs/ruleregs_index.tpl');
+		self::index();
 	}
 	public function category_edit($id)
 	{
@@ -114,6 +113,7 @@ class Ruleregs extends CodonModule {
 		{
 			$this->set('message', 'Some fields are missing! Fill them all please.');
 			$this->render('core_error.tpl');
+			self::category_edit($this->post->id);
 			return;
 		}
 		$title = DB::escape($this->post->title);
@@ -127,3 +127,4 @@ class Ruleregs extends CodonModule {
 		$this->render('ruleregs/ruleregs_index.tpl');
 	}
 }
+
