@@ -1,9 +1,9 @@
 <?php
 ///////////////////////////////////////////////
-///Rules and Regulations v1.1 by php-mods.eu///
+///Rules and Regulations v1.2 by php-mods.eu///
 ///            Author php-mods.eu           ///
-///           Packed at 30/12/2012          ///
-///     Copyright (c) 2014, php-mods.eu     ///
+///            Packed at 11/2/2015          ///
+///     Copyright (c) 2015, php-mods.eu     ///
 ///////////////////////////////////////////////
 
 ?>
@@ -64,7 +64,7 @@ if(Auth::LoggedIn())
        <?php } ?>
        </div>
 </div>
-<p align="right">Copyright &copy; 2014 - phpmods</p>
+<p align="right">Copyright &copy; <?php echo date('Y'); ?> - phpmods</p>
 <?php 
 //Please do not remove the copyright notice as it is part of the Creative Commons License which module is licensed under. Please consider buying me a coffee. FYI, coffee in Greece costs just 1€. My PayPal email address is geo.servetas@gmail.com. 
 ?>
