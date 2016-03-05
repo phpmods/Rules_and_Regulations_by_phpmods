@@ -8,7 +8,7 @@
 
 class Ruleregs extends CodonModule {
 	public function HTMLHead() {
-        $this->set('sidebar', 'ruleregs/ruleregs_sidebar');
+        $this->set('sidebar', 'ruleregs/ruleregs_sidebar.tpl');
     }
 	public function NavBar() {
         echo '<li><a href="'.SITE_URL.'/admin/index.php/Ruleregs">Rules and Regulations</a></li>';
